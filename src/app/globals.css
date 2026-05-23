@@ -1,0 +1,182 @@
+@import "tailwindcss";
+@plugin "daisyui" {
+  themes: all;
+}
+
+:root,
+[data-theme] {
+  --background: var(--color-base-100);
+  --foreground: var(--color-base-content);
+  --surface: var(--color-base-200);
+  --surface-elevated: var(--color-base-300);
+  --footer-bg: color-mix(in oklab, var(--color-base-300) 88%, var(--color-base-100));
+  --border: color-mix(in oklab, var(--color-base-content) 18%, transparent);
+  --border-strong: color-mix(in oklab, var(--color-base-content) 28%, transparent);
+  --muted: color-mix(in oklab, var(--color-base-content) 62%, transparent);
+  --accent: var(--color-primary);
+  --accent-muted: color-mix(in oklab, var(--color-primary) 22%, transparent);
+  --accent-foreground: var(--color-primary-content);
+  --radius: 10px;
+  --glow: color-mix(in oklab, var(--color-primary) 40%, transparent);
+}
+
+[data-theme="dark"],
+[data-theme="black"],
+[data-theme="night"],
+[data-theme="coffee"],
+[data-theme="dim"],
+[data-theme="dracula"],
+[data-theme="luxury"],
+[data-theme="nord"] {
+  --accent: #00e5ff;
+  --accent-muted: rgba(0, 229, 255, 0.16);
+  --accent-foreground: #0a0a0b;
+  --glow: rgba(0, 229, 255, 0.3);
+  --footer-bg: #121214;
+  --border: rgba(255, 255, 255, 0.12);
+  --border-strong: rgba(255, 255, 255, 0.2);
+  --muted: rgba(244, 244, 245, 0.68);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-surface: var(--surface);
+  --color-surface-elevated: var(--surface-elevated);
+  --color-muted: var(--muted);
+  --color-border: var(--border);
+  --color-accent: var(--accent);
+  --color-accent-muted: var(--accent-muted);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+  --radius-sm: var(--radius);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-geist-sans), system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+@layer utilities {
+  .tracking-tight-headline {
+    letter-spacing: -0.045em;
+  }
+  .glass-nav {
+    background: color-mix(in oklab, var(--background) 85%, transparent);
+    backdrop-filter: blur(20px) saturate(1.2);
+    -webkit-backdrop-filter: blur(20px) saturate(1.2);
+    box-shadow: 0 1px 0 var(--border);
+  }
+  .shadow-subtle {
+    box-shadow:
+      0 1px 0 var(--border),
+      0 16px 48px color-mix(in oklab, #000 35%, transparent);
+  }
+  .shadow-glow {
+    box-shadow:
+      0 0 0 1px color-mix(in oklab, var(--accent) 35%, transparent),
+      0 12px 40px var(--glow);
+  }
+  .gradient-mesh {
+    background:
+      radial-gradient(ellipse 90% 60% at 10% -20%, var(--accent-muted), transparent 55%),
+      radial-gradient(ellipse 70% 50% at 95% 0%, color-mix(in oklab, var(--accent) 12%, transparent), transparent 50%),
+      var(--background);
+  }
+  .section-alt {
+    background: color-mix(in oklab, var(--surface) 55%, var(--background));
+  }
+  .accent-line {
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--accent), transparent);
+  }
+  .btn-icon {
+    @apply flex h-10 w-10 items-center justify-center rounded-[var(--radius)] border text-foreground transition-all duration-200;
+    border-color: var(--border-strong);
+    background: var(--surface);
+  }
+  .btn-icon:hover {
+    border-color: color-mix(in oklab, var(--accent) 50%, transparent);
+    background: var(--accent-muted);
+    color: var(--accent);
+  }
+  .btn-pill {
+    @apply inline-flex h-10 items-center justify-center rounded-full border px-5 text-sm font-medium transition-all duration-200;
+    border-color: var(--border-strong);
+    background: var(--surface);
+    color: var(--foreground);
+  }
+  .btn-pill:hover {
+    border-color: color-mix(in oklab, var(--accent) 50%, transparent);
+    background: var(--accent-muted);
+    color: var(--accent);
+  }
+  .btn-pill-active {
+    border-color: var(--accent);
+    background: var(--accent-muted);
+    color: var(--accent);
+    box-shadow: 0 0 0 1px color-mix(in oklab, var(--accent) 30%, transparent);
+  }
+  .btn-primary {
+    @apply inline-flex h-11 items-center justify-center rounded-full px-7 text-sm font-semibold transition-all duration-200;
+    background: var(--accent);
+    color: var(--accent-foreground);
+  }
+  .btn-primary:hover {
+    filter: brightness(1.08);
+    box-shadow: 0 8px 28px var(--glow);
+  }
+  .card-elevated {
+    @apply overflow-hidden rounded-[var(--radius)] border transition-all duration-300;
+    border-color: var(--border-strong);
+    background: var(--surface);
+    box-shadow: 0 4px 24px color-mix(in oklab, #000 12%, transparent);
+  }
+  .card-elevated:hover {
+    border-color: color-mix(in oklab, var(--accent) 45%, transparent);
+    box-shadow:
+      0 0 0 1px color-mix(in oklab, var(--accent) 20%, transparent),
+      0 16px 40px var(--glow);
+  }
+  .section-label {
+    @apply text-[11px] font-bold uppercase tracking-[0.24em] text-accent;
+  }
+  .text-visible-muted {
+    color: var(--muted);
+  }
+  .safe-bottom {
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+  .footer-clearance {
+    padding-bottom: calc(5.5rem + env(safe-area-inset-bottom, 0px));
+  }
+}
+
+@keyframes slide-out-left {
+  from { transform: translateX(0); }
+  to { transform: translateX(-100%); }
+}
+
+@keyframes slide-in-right {
+  from { transform: translateX(100%); }
+  to { transform: translateX(0); }
+}
+
+[data-theme] .bg-primary {
+  background-color: var(--color-primary);
+}
+[data-theme] .bg-secondary {
+  background-color: var(--color-secondary);
+}
+[data-theme] .bg-accent-swatch {
+  background-color: var(--color-accent);
+}
+[data-theme] .bg-neutral {
+  background-color: var(--color-neutral);
+}

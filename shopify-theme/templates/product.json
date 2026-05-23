@@ -1,0 +1,17 @@
+{
+  "sections": {
+    "product-gallery": {
+      "type": "product-gallery"
+    },
+    "purchase-panel": {
+      "type": "purchase-panel"
+    },
+    "product-specs": {
+      "type": "product-specs"
+    },
+    "product-faq": {
+      "type": "product-faq"
+    }
+  },
+  "order": ["product-gallery", "purchase-panel", "product-specs", "product-faq"]
+}

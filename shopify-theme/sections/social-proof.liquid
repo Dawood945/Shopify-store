@@ -1,0 +1,41 @@
+<section class="mx-auto max-w-7xl px-4 pt-16 sm:px-6 lg:px-8 lg:pt-24">
+  <div class="rounded-[var(--radius)] border border-border bg-surface px-6 py-10 sm:px-10 md:rounded-xl">
+    <div class="flex flex-col items-center gap-10 text-center sm:flex-row sm:justify-between sm:text-left">
+      <div class="flex flex-wrap items-center justify-center gap-8 sm:justify-start sm:gap-12">
+        {% for block in section.blocks limit:4 %}
+          <div class="flex flex-col">
+            <span class="text-2xl font-bold text-foreground">{{ block.settings.stat }}</span>
+            <span class="text-xs text-visible-muted">{{ block.settings.label }}</span>
+          </div>
+        {% endfor %}
+      </div>
+      <div class="flex items-center gap-3">
+        <div class="flex -space-x-2">
+          {% for i in (1..3) %}
+            <div class="flex h-8 w-8 items-center justify-center rounded-full border-2 border-surface bg-accent text-[10px] font-bold text-accent-foreground">U</div>
+          {% endfor %}
+        </div>
+        <p class="text-sm text-visible-muted">Joined by <span class="font-semibold text-foreground">1,200+</span> builders</p>
+      </div>
+    </div>
+  </div>
+</section>
+{% schema %}
+{
+  "name": "Social Proof",
+  "max_blocks": 4,
+  "blocks": [
+    {
+      "type": "stat",
+      "name": "Stat",
+      "settings": [
+        { "type": "text", "id": "stat", "label": "Stat", "default": "99.9%" },
+        { "type": "text", "id": "label", "label": "Label", "default": "Uptime" }
+      ]
+    }
+  ],
+  "presets": [
+    { "name": "Social Proof", "category": "Home" }
+  ]
+}
+{% endschema %}

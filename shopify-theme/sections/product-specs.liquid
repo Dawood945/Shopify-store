@@ -1,0 +1,30 @@
+<div class="rounded-[var(--radius)] border border-border bg-surface p-6 md:rounded-xl">
+  <h3 class="text-lg font-bold text-foreground">Specifications</h3>
+  <div class="mt-4 divide-y divide-border">
+    {% for block in section.blocks %}
+      <div class="flex justify-between py-3 text-sm">
+        <span class="text-visible-muted">{{ block.settings.label }}</span>
+        <span class="font-medium text-foreground">{{ block.settings.value }}</span>
+      </div>
+    {% endfor %}
+  </div>
+</div>
+{% schema %}
+{
+  "name": "Product Specs",
+  "max_blocks": 10,
+  "blocks": [
+    {
+      "type": "spec",
+      "name": "Spec",
+      "settings": [
+        { "type": "text", "id": "label", "label": "Label", "default": "Spec" },
+        { "type": "text", "id": "value", "label": "Value", "default": "Value" }
+      ]
+    }
+  ],
+  "presets": [
+    { "name": "Product Specs", "category": "Product" }
+  ]
+}
+{% endschema %}

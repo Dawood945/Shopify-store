@@ -1,0 +1,32 @@
+<div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+  {% for product in collection.products %}
+    {% render 'product-card', product: product %}
+  {% else %}
+    {% for block in section.blocks %}
+      {% render 'product-card', block: block %}
+    {% endfor %}
+  {% endfor %}
+</div>
+{% schema %}
+{
+  "name": "Collection Grid",
+  "max_blocks": 12,
+  "blocks": [
+    {
+      "type": "product",
+      "name": "Fallback Product",
+      "settings": [
+        { "type": "image_picker", "id": "image", "label": "Image" },
+        { "type": "text", "id": "title", "label": "Title", "default": "Product" },
+        { "type": "text", "id": "category", "label": "Category" },
+        { "type": "text", "id": "price", "label": "Price", "default": "$49.99" },
+        { "type": "text", "id": "compare_price", "label": "Compare Price" },
+        { "type": "url", "id": "url", "label": "URL" }
+      ]
+    }
+  ],
+  "presets": [
+    { "name": "Collection Grid", "category": "Collection" }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,67 @@
+<div class="relative mx-auto max-w-7xl px-4 pt-6 sm:px-6 sm:pt-10 lg:px-8 lg:pt-14" data-slider>
+  <div class="relative overflow-hidden rounded-[var(--radius)] bg-surface md:rounded-xl min-h-[260px] sm:min-h-[340px] lg:min-h-[420px]">
+    {% for block in section.blocks %}
+      <div class="absolute inset-0" data-slide="{{ forloop.index0 }}" style="display:{{ forloop.first | replace: 'true', 'block' | replace: 'false', 'none' }}">
+        <div class="relative flex h-full flex-col-reverse md:flex-row">
+          <div class="flex flex-1 flex-col justify-center px-6 py-8 md:px-10 lg:px-14 lg:py-12 xl:px-20 xl:py-16">
+            {% if block.settings.tag != blank %}
+              <span class="section-label mb-3 w-fit">{{ block.settings.tag }}</span>
+            {% endif %}
+            {% if block.settings.title != blank %}
+              <h2 class="text-2xl font-bold tracking-tight-headline text-foreground sm:leading-tight-headline md:text-3xl lg:text-4xl xl:text-5xl">{{ block.settings.title }}</h2>
+            {% endif %}
+            {% if block.settings.description != blank %}
+              <p class="mt-2 max-w-md text-sm leading-relaxed text-visible-muted sm:mt-3 sm:text-base">{{ block.settings.description }}</p>
+            {% endif %}
+            {% if block.settings.button_label != blank and block.settings.button_url != blank %}
+              <a href="{{ block.settings.button_url }}" class="btn-pill mt-4 w-fit sm:mt-6">{{ block.settings.button_label }}</a>
+            {% endif %}
+          </div>
+          <div class="relative h-44 overflow-hidden md:h-auto md:w-[45%] lg:w-[50%] xl:w-[55%]">
+            <div class="absolute inset-0 bg-gradient-to-t from-surface/60 via-transparent to-transparent md:bg-gradient-to-l md:from-surface/30"></div>
+            {% if block.settings.image != blank %}
+              <img src="{{ block.settings.image | image_url: width: 800 }}" alt="{{ block.settings.title | escape }}" class="h-full w-full object-cover" loading="{{ forloop.first | replace: 'true', 'eager' | replace: 'false', 'lazy' }}">
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+  <div class="mt-4 flex items-center justify-center gap-2 sm:gap-2.5">
+    {% for block in section.blocks %}
+      <button type="button" data-dot="{{ forloop.index0 }}" class="rounded-full transition-all duration-300 h-2 w-2 bg-foreground/30 hover:bg-foreground/50 sm:h-1.5" aria-label="Go to slide {{ forloop.index0 | plus: 1 }}"></button>
+    {% endfor %}
+  </div>
+</div>
+{% schema %}
+{
+  "name": "Hero",
+  "max_blocks": 10,
+  "blocks": [
+    {
+      "type": "slide",
+      "name": "Slide",
+      "settings": [
+        { "type": "image_picker", "id": "image", "label": "Image" },
+        { "type": "text", "id": "tag", "label": "Tag", "default": "Featured" },
+        { "type": "text", "id": "title", "label": "Title", "default": "Slide Title" },
+        { "type": "textarea", "id": "description", "label": "Description", "default": "Slide description" },
+        { "type": "url", "id": "button_url", "label": "Button URL" },
+        { "type": "text", "id": "button_label", "label": "Button Label", "default": "Shop Now" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Hero",
+      "category": "Hero",
+      "blocks": [
+        { "type": "slide", "settings": { "title": "RTX 5090 Founders Edition", "tag": "Just Landed", "description": "Next-gen graphics horsepower. 4K gaming, maxed out.", "button_label": "Pre-Order Now", "button_url": "/collections/electronics" } },
+        { "type": "slide", "settings": { "title": "Beyblade X Series", "tag": "New Drop", "description": "Premium spinning tops with custom launchers. Battle ready.", "button_label": "Shop Beyblades", "button_url": "/collections/toys" } },
+        { "type": "slide", "settings": { "title": "Custom Mech Bundle", "tag": "Bundle Deal", "description": "Build your ultimate rig. Save up to 20% on select combos.", "button_label": "Build Bundle", "button_url": "/pages/bundles" } },
+        { "type": "slide", "settings": { "title": "Gaming Precision Gear", "tag": "Pro Series", "description": "High-DPI mice. Mechanical switches. Zero compromise.", "button_label": "Explore Gear", "button_url": "/collections/gears" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

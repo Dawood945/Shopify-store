@@ -1,0 +1,35 @@
+<section class="mx-auto max-w-7xl px-4 pb-16 pt-16 sm:px-6 lg:px-8 lg:pb-24 lg:pt-24">
+  <div class="mb-8">
+    <span class="section-label">Complete Your Build</span>
+    <h2 class="mt-2 text-2xl font-bold tracking-tight-headline text-foreground sm:text-3xl">Bundle & Save</h2>
+    <p class="mt-1 text-sm text-visible-muted">Add these items for a discount</p>
+  </div>
+  <div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+    {% for block in section.blocks limit:3 %}
+      {% render 'bundle-card', block: block %}
+    {% endfor %}
+  </div>
+</section>
+{% schema %}
+{
+  "name": "Bundle Upsell",
+  "max_blocks": 3,
+  "blocks": [
+    {
+      "type": "bundle",
+      "name": "Bundle",
+      "settings": [
+        { "type": "image_picker", "id": "image", "label": "Image" },
+        { "type": "text", "id": "title", "label": "Title", "default": "Bundle" },
+        { "type": "text", "id": "items", "label": "Items", "default": "2 Items" },
+        { "type": "text", "id": "price", "label": "Price", "default": "$99.99" },
+        { "type": "text", "id": "compare_price", "label": "Compare Price" },
+        { "type": "url", "id": "url", "label": "URL" }
+      ]
+    }
+  ],
+  "presets": [
+    { "name": "Bundle Upsell", "category": "Product" }
+  ]
+}
+{% endschema %}

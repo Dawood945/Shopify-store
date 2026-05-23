@@ -1,0 +1,38 @@
+<div class="mx-auto max-w-3xl px-4 py-12 sm:px-6 lg:px-8">
+  <h1 class="text-3xl font-bold tracking-tight-headline text-foreground">{{ 'cart.general.title' | t }}</h1>
+  {% if cart.item_count > 0 %}
+    <form action="{{ routes.cart_url }}" method="post" class="mt-8 space-y-6">
+      {% for item in cart.items %}
+        <div class="flex gap-4 rounded-[var(--radius)] border border-border bg-surface p-4">
+          <div class="h-20 w-20 shrink-0 overflow-hidden rounded-[var(--radius)]">
+            <img src="{{ item.image | image_url: width: 160 }}" alt="{{ item.title | escape }}" class="h-full w-full object-cover" loading="lazy">
+          </div>
+          <div class="flex flex-1 flex-col justify-between">
+            <div>
+              <h3 class="text-sm font-semibold text-foreground">{{ item.product.title }}</h3>
+              {% unless item.variant.title == 'Default Title' %}
+                <p class="text-xs text-visible-muted">{{ item.variant.title }}</p>
+              {% endunless %}
+            </div>
+            <div class="flex items-center justify-between">
+              <span class="text-sm font-bold text-foreground">{{ item.line_price | money }}</span>
+              <a href="{{ routes.cart_change_url }}?line={{ forloop.index }}&amp;quantity=0" class="text-xs text-visible-muted hover:text-accent">Remove</a>
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+      <div class="border-t border-border pt-6">
+        <div class="flex items-center justify-between">
+          <span class="text-lg font-bold text-foreground">{{ 'cart.general.total' | t }}</span>
+          <span class="text-lg font-bold text-foreground">{{ cart.total_price | money }}</span>
+        </div>
+        <button type="submit" name="checkout" class="btn-pill mt-4 w-full text-sm">{{ 'cart.general.checkout' | t }}</button>
+      </div>
+    </form>
+  {% else %}
+    <div class="mt-12 text-center">
+      <p class="text-visible-muted">{{ 'cart.general.empty' | t }}</p>
+      <a href="{{ routes.root_url }}collections/all" class="btn-pill mt-4 inline-block text-sm">Continue Shopping</a>
+    </div>
+  {% endif %}
+</div>
