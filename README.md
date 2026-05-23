@@ -1,6 +1,6 @@
 # ARCHIVE
 
-Premium e-commerce storefront with **Shopify headless** support. Dark editorial aesthetic, Electric Cyan accents, Geist typography.
+Premium headless Shopify storefront. Dark editorial aesthetic, cyan accents, Geist typography.
 
 ## Stack
 
@@ -22,16 +22,17 @@ Without Shopify env vars, the site uses local demo products in `src/lib/data.ts`
 
 ## Shopify integration
 
-See **[shopify/README.md](shopify/README.md)** for full setup.
-
 ### Quick connect
 
-1. Copy `.env.example` → `.env.local`
-2. Add `SHOPIFY_STORE_DOMAIN` and `SHOPIFY_STOREFRONT_ACCESS_TOKEN`
-3. Create Shopify collections: `electronics`, `toys`, `gears`
-4. Import demo products: `npm run shopify:export` → upload `shopify/import/products.csv`
+1. Create a `.env.local` with your Shopify store credentials:
 
-### Import products into Shopify Admin
+```
+SHOPIFY_STORE_DOMAIN=your-store.myshopify.com
+SHOPIFY_STOREFRONT_ACCESS_TOKEN=your-public-token
+```
+
+2. Create Shopify collections: `electronics`, `toys`, `gears`
+3. Import demo products:
 
 ```bash
 npm run shopify:export
@@ -39,21 +40,27 @@ npm run shopify:export
 
 Upload `shopify/import/products.csv` via **Shopify Admin → Products → Import**.
 
+### Hydrogen (headless) setup (optional)
+
+```bash
+npx @shopify/cli@latest init
+```
+
 ## Routes
 
 | Route | Screen |
 |-------|--------|
-| `/` | Homepage |
-| `/collections` | Product grid + filters |
-| `/products/[slug]` | Product detail |
-| `/bundles` | Bundle discounts |
-| `/checkout` | Demo checkout (fallback) |
+| `/` | Homepage (hero, bundles, trending, categories) |
+| `/collections` | Product grid + filters (sidebar) |
+| `/products/[slug]` | Product detail (gallery, specs, FAQ, upsell) |
+| `/bundles` | Bundle deals |
+| `/checkout` | Demo checkout |
 
 ## Architecture
 
 | Layer | Purpose |
 |-------|---------|
-| `src/lib/catalog.ts` | Products from Shopify or mock fallback |
-| `src/lib/shopify/` | Storefront API client, mappers, cart |
+| `src/lib/data.ts` | 8 demo products + 3 bundles (local fallback) |
+| `src/lib/shopify/` | Storefront API client, mappers, cart queries |
 | `src/app/api/shopify/checkout` | Create Shopify checkout URL |
-| `shopify/import/` | CSV for Shopify Admin import |
+| `scripts/generate-shopify-csv.mjs` | Generate product CSV for Shopify Admin import |
