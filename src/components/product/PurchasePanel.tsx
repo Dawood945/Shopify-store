@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { formatPrice } from "@/lib/catalog";
+import { Price } from "@/components/ui/Price";
 import type { Product } from "@/lib/types";
 import { cn } from "@/lib/utils";
 
@@ -9,7 +9,11 @@ export function PurchasePanel({ product }: { product: Product }) {
   const [size, setSize] = useState(product.sizes[0] ?? "One Size");
   const [loading, setLoading] = useState(false);
 
+  const outOfStock = product.stock !== undefined && product.stock <= 0;
+  const lowStock = product.stock !== undefined && product.stock > 0 && product.stock <= 5;
+
   async function goToCheckout() {
+    if (outOfStock) return;
     setLoading(true);
     try {
       const res = await fetch("/api/shopify/checkout", {
@@ -35,7 +39,26 @@ export function PurchasePanel({ product }: { product: Product }) {
         {product.name}
       </h1>
       <p className="mt-2 text-sm text-accent">{product.tagline}</p>
-      <p className="mt-4 text-2xl font-semibold">{formatPrice(product.price)}</p>
+
+      <p className="mt-4 text-2xl font-semibold">
+        <Price
+          amount={product.price}
+          currency={product.currency}
+          compareAmount={product.comparePrice}
+        />
+      </p>
+
+      {/* Stock indicator */}
+      {outOfStock && (
+        <p className="mt-2 text-sm font-semibold text-red-500">Out of Stock</p>
+      )}
+      {lowStock && (
+        <p className="mt-2 text-sm font-medium text-orange-500">Only {product.stock} left in stock</p>
+      )}
+      {product.stock !== undefined && product.stock > 5 && (
+        <p className="mt-2 text-xs text-visible-muted">In Stock</p>
+      )}
+
       <p className="mt-4 text-sm text-visible-muted leading-relaxed">{product.description}</p>
 
       <div className="mt-8">
@@ -63,10 +86,10 @@ export function PurchasePanel({ product }: { product: Product }) {
         <button
           type="button"
           onClick={goToCheckout}
-          disabled={loading}
+          disabled={loading || outOfStock}
           className="btn-primary flex-1 disabled:opacity-60"
         >
-          {loading ? "Redirecting…" : "Add to Cart"}
+          {outOfStock ? "Out of Stock" : loading ? "Redirecting…" : "Add to Cart"}
         </button>
         <a href="/checkout" className="btn-pill flex-1 justify-center text-center">
           Demo Checkout

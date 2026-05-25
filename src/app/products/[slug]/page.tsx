@@ -5,6 +5,7 @@ import { PurchasePanel } from "@/components/product/PurchasePanel";
 import { ProductSpecs } from "@/components/product/ProductSpecs";
 import { ProductFAQ } from "@/components/product/ProductFAQ";
 import { BundleUpsell } from "@/components/product/BundleUpsell";
+import { TrustBadges } from "@/components/ui/TrustBadges";
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -35,6 +36,9 @@ export default async function ProductPage({ params }: Props) {
         <BundleUpsell productSlug={product.slug} />
         <ProductSpecs product={product} />
         <ProductFAQ />
+      </div>
+      <div className="mt-16">
+        <TrustBadges />
       </div>
     </div>
   );

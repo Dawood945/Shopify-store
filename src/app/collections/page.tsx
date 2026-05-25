@@ -2,6 +2,7 @@ import { Suspense } from "react";
 import { CollectionFilters } from "@/components/collections/CollectionFilters";
 import { CollectionGrid } from "@/components/collections/CollectionGrid";
 import { CategoryNav } from "@/components/layout/CategoryNav";
+import { TrustBadges } from "@/components/ui/TrustBadges";
 import { getProducts } from "@/lib/catalog";
 
 export const metadata = {
@@ -40,6 +41,10 @@ export default async function CollectionsPage() {
             <CollectionGrid products={products} />
           </Suspense>
         </div>
+      </div>
+
+      <div className="mt-16">
+        <TrustBadges />
       </div>
     </div>
   );

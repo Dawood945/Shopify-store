@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { Suspense } from "react";
 import { ThemeButton } from "@/components/theme/ThemeButton";
+import { CurrencySelector } from "@/components/ui/CurrencySelector";
 import { SearchButton } from "./SearchButton";
 import { CartButton } from "./CartButton";
 import { CategoryNav } from "./CategoryNav";
@@ -34,6 +35,7 @@ export function TopNavBar() {
             </div>
 
             <div className="flex items-center gap-2">
+              <CurrencySelector />
               <SearchButton />
               <ThemeButton />
               <CartButton />

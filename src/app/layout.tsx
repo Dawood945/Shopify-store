@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import { SiteLayout } from "@/components/layout/SiteLayout";
 import { ThemeProvider } from "@/components/theme/ThemeProvider";
 import { ThemeScript } from "@/components/theme/ThemeScript";
+import { CurrencyProvider } from "@/contexts/CurrencyContext";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -41,7 +42,9 @@ export default function RootLayout({
       </head>
       <body className="min-h-dvh bg-background text-foreground">
         <ThemeProvider>
-          <SiteLayout>{children}</SiteLayout>
+          <CurrencyProvider>
+            <SiteLayout>{children}</SiteLayout>
+          </CurrencyProvider>
         </ThemeProvider>
       </body>
     </html>
