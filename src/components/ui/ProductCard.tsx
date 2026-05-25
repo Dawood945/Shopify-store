@@ -81,13 +81,13 @@ export function ProductCard({ product, variant = "default", priority = false }: 
   return (
     <article className="group relative flex h-full flex-col">
       <div className="card-elevated relative z-0 flex h-full flex-col">
-        <Link href={`/products/${product.slug}`} className="relative aspect-[4/5] overflow-hidden">
+        <Link href={`/products/${product.slug}`} className="relative aspect-square overflow-hidden bg-surface sm:aspect-[4/5]">
           <Image
             src={product.image}
             alt={product.name}
             fill
             sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-            className="object-cover transition-all duration-500 group-hover:scale-110 group-hover:rotate-[0.5deg]"
+            className="object-contain p-3 transition-all duration-500 group-hover:scale-105"
             loading={priority ? "eager" : "lazy"}
           />
 
