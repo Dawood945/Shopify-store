@@ -105,7 +105,7 @@ export function Hero() {
         }}
         aria-hidden
       />
-      <div className="relative mx-auto flex min-h-[90vh] max-w-7xl flex-col justify-end px-4 pb-28 pt-28 sm:px-6 sm:pb-24 lg:px-8 lg:pb-32 lg:pt-32">
+      <div className="relative mx-auto flex min-h-[90vh] max-w-7xl flex-col justify-end px-4 pb-20 pt-20 sm:px-6 sm:pb-24 sm:pt-24 lg:px-8 lg:pb-32 lg:pt-32">
         <div className="inline-flex w-fit items-center gap-2 rounded-full border border-[var(--border-strong)] bg-surface/80 px-4 py-1.5 backdrop-blur-md">
           <span className="h-2 w-2 rounded-full bg-accent shadow-[0_0_8px_var(--accent)]" />
           <span className="section-label !text-[10px]">Spring 2026 · Bundle Sale</span>

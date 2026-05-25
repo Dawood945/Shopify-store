@@ -33,7 +33,7 @@ export function PurchasePanel({ product }: { product: Product }) {
   }
 
   return (
-    <div className="card-elevated lg:sticky lg:top-24 lg:self-start lg:p-6">
+    <div className="card-elevated lg:sticky lg:top-24 lg:self-start p-5 lg:p-6">
       <p className="section-label capitalize">{product.category}</p>
       <h1 className="mt-2 text-2xl font-semibold tracking-tight-headline sm:text-4xl">
         {product.name}

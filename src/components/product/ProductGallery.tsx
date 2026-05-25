@@ -9,7 +9,7 @@ export function ProductGallery({ product }: { product: Product }) {
 
   return (
     <div className="space-y-3">
-      <div className="relative aspect-[4/5] overflow-hidden rounded-[var(--radius)] border border-[var(--border)] bg-surface">
+      <div className="relative aspect-[3/4] overflow-hidden rounded-[var(--radius)] border border-[var(--border)] bg-surface sm:aspect-[4/5]">
         <Image
           src={product.images[active] ?? product.image}
           alt={product.name}

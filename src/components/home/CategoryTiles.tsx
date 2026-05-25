@@ -4,7 +4,7 @@ import { categories } from "@/lib/data";
 
 export function CategoryTiles() {
   return (
-    <section className="section-alt border-b border-[var(--border-strong)] py-20 sm:py-28">
+    <section className="section-alt border-b border-[var(--border-strong)] py-14 sm:py-28">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <p className="section-label">Browse</p>
         <h2 className="mt-3 text-3xl font-bold tracking-tight-headline text-foreground">

@@ -43,7 +43,7 @@ export default async function CollectionsPage() {
         </div>
       </div>
 
-      <div className="mt-16">
+      <div className="mt-10 lg:mt-16">
         <TrustBadges />
       </div>
     </div>

@@ -2,7 +2,7 @@ import Image from "next/image";
 
 export function EditorialImage() {
   return (
-    <section className="relative h-[80vh] min-h-[480px] overflow-hidden border-b border-[var(--border-strong)]">
+    <section className="relative h-[60vh] min-h-[360px] overflow-hidden border-b border-[var(--border-strong)] sm:h-[80vh] sm:min-h-[480px]">
       <Image
         src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=1920&q=85"
         alt="Editorial lifestyle — curated space"
