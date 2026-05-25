@@ -1,4 +1,4 @@
-# ARCHIVE
+# GearNest
 
 Premium headless Shopify storefront. Dark editorial aesthetic, cyan accents, Geist typography.
 

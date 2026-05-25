@@ -49,7 +49,7 @@ export async function getProductSlugs(): Promise<string[]> {
   return products.map((p) => p.slug);
 }
 
-/** Bundles are ARCHIVE-local until modeled as Shopify bundles/discounts */
+/** Bundles are local until modeled as Shopify bundles/discounts */
 export const bundles = mockBundles;
 
 export async function getBundles(): Promise<Bundle[]> {

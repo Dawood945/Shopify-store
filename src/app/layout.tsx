@@ -18,8 +18,8 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: {
-    default: "ARCHIVE — Engineered Precision",
-    template: "%s | ARCHIVE",
+    default: "GearNest — Engineered Precision",
+    template: "%s | GearNest",
   },
   description:
     "Premium e-commerce for the discerning individual. Intentional design, handcrafted quality.",

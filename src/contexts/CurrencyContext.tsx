@@ -13,7 +13,7 @@ type CurrencyContextValue = {
 
 const CurrencyContext = createContext<CurrencyContextValue | null>(null);
 
-const STORAGE_KEY = "archive_currency";
+const STORAGE_KEY = "gearnest_currency";
 
 export function CurrencyProvider({ children }: { children: React.ReactNode }) {
   const [currency, setCurrencyState] = useState<CurrencyCode>("USD");

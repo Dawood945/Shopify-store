@@ -20,10 +20,10 @@ export function TopNavBar() {
                 className="flex items-center gap-2 text-foreground transition-opacity hover:opacity-80"
               >
                 <span className="flex h-9 w-9 items-center justify-center rounded-[var(--radius)] bg-accent text-sm font-bold text-[var(--accent-foreground)] shadow-glow">
-                  A
+                  G
                 </span>
                 <span className="hidden text-sm font-semibold tracking-tight-headline uppercase sm:inline">
-                  Archive
+                  GearNest
                 </span>
               </Link>
             </div>

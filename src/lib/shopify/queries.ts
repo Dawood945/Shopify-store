@@ -1,5 +1,5 @@
 export const PRODUCTS_QUERY = `
-  query ArchiveProducts($first: Int!) {
+  query GearNestProducts($first: Int!) {
     products(first: $first, sortKey: UPDATED_AT, reverse: true) {
       edges {
         node {
@@ -69,7 +69,7 @@ export const PRODUCTS_QUERY = `
 `;
 
 export const PRODUCT_BY_HANDLE_QUERY = `
-  query ArchiveProductByHandle($handle: String!) {
+  query GearNestProductByHandle($handle: String!) {
     product(handle: $handle) {
       id
       handle
@@ -135,7 +135,7 @@ export const PRODUCT_BY_HANDLE_QUERY = `
 `;
 
 export const CART_CREATE_MUTATION = `
-  mutation ArchiveCartCreate($lines: [CartLineInput!]!) {
+  mutation GearNestCartCreate($lines: [CartLineInput!]!) {
     cartCreate(input: { lines: $lines }) {
       cart {
         id

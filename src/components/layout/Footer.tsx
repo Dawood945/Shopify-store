@@ -26,11 +26,11 @@ export function Footer() {
           <div className="lg:col-span-1">
             <div className="flex items-center gap-3">
               <span className="flex h-11 w-11 items-center justify-center rounded-[var(--radius)] bg-accent text-base font-bold text-[var(--accent-foreground)] shadow-glow">
-                A
+                G
               </span>
               <div>
                 <p className="text-lg font-bold tracking-tight-headline uppercase text-foreground">
-                  Archive
+                  GearNest
                 </p>
                 <p className="text-xs text-visible-muted">Engineered Precision</p>
               </div>
@@ -79,7 +79,7 @@ export function Footer() {
 
         <div className="mt-14 flex flex-col gap-4 border-t border-[var(--border-strong)] pt-8 sm:flex-row sm:items-center sm:justify-between">
           <p className="text-sm text-visible-muted">
-            &copy; {new Date().getFullYear()} ARCHIVE. All rights reserved.
+            &copy; {new Date().getFullYear()} GearNest. All rights reserved.
           </p>
           <p className="text-sm font-medium text-accent">
             Bundle discounts up to 20% · Free returns 30 days

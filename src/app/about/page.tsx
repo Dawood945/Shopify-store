@@ -13,7 +13,7 @@ export default function AboutPage() {
       </h1>
       <div className="mt-8 space-y-6 text-base leading-relaxed text-visible-muted">
         <p>
-          ARCHIVE is a modern storefront built around three pillars—electronics,
+          GearNest is a modern storefront built around three pillars—electronics,
           toys, and gears—with bundle discounts that reward buying complete
           setups instead of single items.
         </p>

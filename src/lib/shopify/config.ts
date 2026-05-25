@@ -2,7 +2,7 @@ import type { Category } from "@/lib/types";
 
 export const SHOPIFY_API_VERSION = "2025-01";
 
-/** Map ARCHIVE categories to Shopify collection handles */
+/** Map local categories to Shopify collection handles */
 export const COLLECTION_HANDLE_MAP: Record<Category, string> = {
   electronics: "electronics",
   toys: "toys",
