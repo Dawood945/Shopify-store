@@ -81,33 +81,15 @@ export function ProductCard({ product, variant = "default", priority = false }: 
   return (
     <article className="group relative flex h-full flex-col">
       <div className="card-elevated relative z-0 flex h-full flex-col">
-        <Link href={`/products/${product.slug}`} className="relative aspect-square overflow-hidden bg-surface sm:aspect-[4/5]">
+        <Link href={`/products/${product.slug}`} className="relative aspect-[3/2] overflow-hidden bg-surface">
           <Image
             src={product.image}
             alt={product.name}
             fill
             sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-            className="object-contain p-3 transition-all duration-500 group-hover:scale-105"
+            className="object-cover transition-all duration-500 group-hover:scale-105"
             loading={priority ? "eager" : "lazy"}
           />
-
-          {/* Wishlist button */}
-          <button
-            type="button"
-            onClick={toggleWishlist}
-            aria-label={wishlisted ? "Remove from wishlist" : "Add to wishlist"}
-            className="absolute right-3 top-3 z-10 flex h-8 w-8 items-center justify-center rounded-full bg-background/60 text-foreground backdrop-blur-sm transition-all duration-200 hover:scale-110 hover:bg-background/90"
-          >
-            <svg
-              className="h-4 w-4"
-              viewBox="0 0 24 24"
-              fill={wishlisted ? "currentColor" : "none"}
-              stroke="currentColor"
-              strokeWidth="2"
-            >
-              <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z" />
-            </svg>
-          </button>
 
           {/* Top-left badges */}
           <div className="absolute left-3 top-3 z-10 flex flex-col gap-2">
@@ -156,23 +138,41 @@ export function ProductCard({ product, variant = "default", priority = false }: 
         </Link>
 
         <div className="flex flex-1 flex-col gap-2 p-5">
-          {/* Category + Rating */}
+          {/* Category + Wishlist + Rating */}
           <div className="flex items-center justify-between">
             <p className="text-[10px] font-bold uppercase tracking-widest text-accent">
               {product.category}
             </p>
-            {product.rating && <StarRating rating={product.rating} />}
+            <div className="flex items-center gap-2">
+              {product.rating && <StarRating rating={product.rating} />}
+              <button
+                type="button"
+                onClick={toggleWishlist}
+                aria-label={wishlisted ? "Remove from wishlist" : "Add to wishlist"}
+                className="flex h-7 w-7 items-center justify-center rounded-full text-foreground/60 transition-all duration-200 hover:scale-110 hover:text-red-500"
+              >
+                <svg
+                  className="h-4 w-4"
+                  viewBox="0 0 24 24"
+                  fill={wishlisted ? "currentColor" : "none"}
+                  stroke="currentColor"
+                  strokeWidth="2"
+                >
+                  <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z" />
+                </svg>
+              </button>
+            </div>
           </div>
 
-          {/* Title */}
-          <Link href={`/products/${product.slug}`}>
-            <h3 className="text-base font-semibold tracking-tight text-foreground transition-colors group-hover:text-accent">
-              {product.name}
-            </h3>
-          </Link>
-
-          {/* Tagline */}
-          <p className="line-clamp-1 text-sm text-visible-muted">{product.tagline}</p>
+          {/* Title + tagline — fixed min-height so all cards align */}
+          <div className="min-h-[4.5rem] space-y-1">
+            <Link href={`/products/${product.slug}`}>
+              <h3 className="line-clamp-2 text-base font-semibold tracking-tight text-foreground transition-colors group-hover:text-accent">
+                {product.name}
+              </h3>
+            </Link>
+            <p className="line-clamp-1 text-sm text-visible-muted">{product.tagline}</p>
+          </div>
 
           {/* Price row */}
           <p className="mt-auto pt-2 text-lg font-bold text-foreground">

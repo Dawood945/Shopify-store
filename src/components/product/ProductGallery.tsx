@@ -9,14 +9,14 @@ export function ProductGallery({ product }: { product: Product }) {
 
   return (
     <div className="space-y-3">
-      <div className="relative aspect-[4/3] overflow-hidden rounded-[var(--radius)] border border-[var(--border)] bg-surface sm:aspect-[3/4]">
+      <div className="relative aspect-square overflow-hidden rounded-[var(--radius)] border border-[var(--border)] bg-surface sm:aspect-[4/5]">
         <Image
           src={product.images[active] ?? product.image}
           alt={product.name}
           fill
           priority
           sizes="(max-width: 1024px) 100vw, 60vw"
-          className="object-contain p-4 sm:p-6"
+          className="object-cover"
         />
       </div>
       {product.images.length > 1 && (
@@ -30,7 +30,7 @@ export function ProductGallery({ product }: { product: Product }) {
                 active === i ? "border-accent" : "border-border hover:border-accent/40"
               }`}
             >
-              <Image src={src} alt="" fill sizes="64px" className="object-contain p-1.5" />
+              <Image src={src} alt="" fill sizes="64px" className="object-cover" />
             </button>
           ))}
         </div>

@@ -82,7 +82,7 @@ export function PurchasePanel({ product }: { product: Product }) {
         </div>
       </div>
 
-      <div className="mt-6 flex flex-col gap-3 sm:flex-row">
+      <div className="mt-6 hidden lg:flex flex-col gap-3 sm:flex-row">
         <button
           type="button"
           onClick={goToCheckout}

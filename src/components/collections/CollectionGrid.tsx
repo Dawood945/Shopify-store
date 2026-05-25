@@ -30,15 +30,12 @@ export function CollectionGrid({ products }: { products: Product[] }) {
 
   return (
     <>
-      <p className="mb-6 text-sm text-visible-muted">
-        {filtered.length} {filtered.length === 1 ? "product" : "products"}
-      </p>
       {filtered.length === 0 ? (
         <div className="rounded-[var(--radius)] border border-border bg-surface px-6 py-16 text-center">
           <p className="text-sm text-visible-muted">No products match your filters.</p>
         </div>
       ) : (
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="grid grid-cols-2 gap-3 sm:gap-6 lg:grid-cols-3">
           {filtered.map((product) => (
             <ProductCard key={product.id} product={product} />
           ))}

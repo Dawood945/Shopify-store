@@ -13,25 +13,25 @@ export default async function CollectionsPage() {
   const products = await getProducts();
 
   return (
-    <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8 lg:py-20">
-      <header className="mb-12 max-w-2xl">
+    <div className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8 lg:py-8">
+      <header className="mb-6 max-w-2xl sm:mb-10">
         <p className="section-label">Explore</p>
-        <h1 className="mt-4 text-4xl font-bold tracking-tight-headline text-foreground sm:text-5xl">
+        <h1 className="mt-4 text-3xl font-bold tracking-tight-headline text-foreground sm:text-5xl">
           Collections
         </h1>
-        <p className="mt-4 text-base text-visible-muted leading-relaxed">
-          Browse electronics, toys, and gears—or filter by price and size.
+        <p className="mt-3 text-sm text-visible-muted leading-relaxed sm:text-base">
+          Electronics, toys, and gears — filter to find your fit.
         </p>
       </header>
 
-      <div className="mb-10 lg:hidden">
+      <div className="mb-4 overflow-x-auto lg:hidden">
         <Suspense fallback={null}>
           <CategoryNav />
         </Suspense>
       </div>
 
-      <div className="flex flex-col gap-10 lg:flex-row lg:gap-12">
-        <div className="lg:w-64 lg:shrink-0">
+      <div className="flex flex-col gap-6 lg:flex-row lg:gap-12">
+        <div className="hidden lg:block lg:w-64 lg:shrink-0">
           <Suspense fallback={<div className="h-48 animate-pulse rounded-[var(--radius)] bg-surface" />}>
             <CollectionFilters />
           </Suspense>
