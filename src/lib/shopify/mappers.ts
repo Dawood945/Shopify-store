@@ -19,6 +19,7 @@ type ShopifyProductNode = {
   id: string;
   handle: string;
   title: string;
+  productType?: string;
   description: string;
   tags: string[];
   vendor?: string;
@@ -31,6 +32,11 @@ type ShopifyProductNode = {
 };
 
 function resolveCategory(node: ShopifyProductNode): Category {
+  const productType = node.productType?.toLowerCase().trim();
+  if (productType === "electronics") return "electronics";
+  if (productType === "toys") return "toys";
+  if (productType === "gears" || productType === "gear") return "gears";
+
   for (const edge of node.collections.edges) {
     const handle = edge.node.handle.toLowerCase();
     if (HANDLE_TO_CATEGORY[handle]) return HANDLE_TO_CATEGORY[handle];

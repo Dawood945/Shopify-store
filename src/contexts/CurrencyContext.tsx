@@ -9,6 +9,7 @@ type CurrencyContextValue = {
   setCurrency: (c: CurrencyCode) => void;
   formatPrice: (amount: number, productCurrency?: CurrencyCode) => string;
   convert: (amount: number, productCurrency?: CurrencyCode) => number;
+  locale: string;
 };
 
 const CurrencyContext = createContext<CurrencyContextValue | null>(null);
@@ -17,15 +18,17 @@ const STORAGE_KEY = "gearnest_currency";
 
 export function CurrencyProvider({ children }: { children: React.ReactNode }) {
   const [currency, setCurrencyState] = useState<CurrencyCode>("PKR");
+  const [locale, setLocale] = useState("en-US");
 
   useEffect(() => {
     const stored = localStorage.getItem(STORAGE_KEY) as CurrencyCode | null;
     if (stored && stored in EXCHANGE_RATES) {
       setCurrencyState(stored);
-      return;
+    } else {
+      const detected = detectCurrencyFromLocale(navigator.language);
+      setCurrencyState(detected);
     }
-    const detected = detectCurrencyFromLocale(navigator.language);
-    setCurrencyState(detected);
+    setLocale(navigator.language);
   }, []);
 
   const setCurrency = (c: CurrencyCode) => {
@@ -42,7 +45,7 @@ export function CurrencyProvider({ children }: { children: React.ReactNode }) {
     formatCurrency(convertPrice(amount, productCurrency, currency), currency);
 
   return (
-    <CurrencyContext.Provider value={{ currency, setCurrency, formatPrice, convert }}>
+    <CurrencyContext.Provider value={{ currency, setCurrency, formatPrice, convert, locale }}>
       {children}
     </CurrencyContext.Provider>
   );

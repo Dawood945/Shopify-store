@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { Price } from "@/components/ui/Price";
 import { useCart } from "@/contexts/CartContext";
+import { DeliveryInfo } from "@/components/product/DeliveryInfo";
 import type { Product } from "@/lib/types";
 import { cn } from "@/lib/utils";
 
@@ -76,6 +77,8 @@ export function PurchasePanel({ product }: { product: Product }) {
           Buy Now
         </a>
       </div>
+
+      <DeliveryInfo product={product} />
 
       <ul className="mt-6 space-y-2 text-xs text-visible-muted">
         <li>Bundle discounts available on select sets</li>

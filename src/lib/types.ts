@@ -27,6 +27,8 @@ export type Product = {
   reviewCount?: number;
   stock?: number;
   currency?: CurrencyCode;
+  availableCountries?: string[];
+  deliveryTime?: string;
   /** Set when loaded from Shopify Storefront API */
   shopifyProductId?: string;
   variants?: ProductVariant[];

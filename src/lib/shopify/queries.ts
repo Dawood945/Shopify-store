@@ -6,6 +6,7 @@ export const PRODUCTS_QUERY = `
           id
           handle
           title
+          productType
           description
           tags
           vendor
@@ -70,10 +71,11 @@ export const PRODUCTS_QUERY = `
 
 export const PRODUCT_BY_HANDLE_QUERY = `
   query GearNestProductByHandle($handle: String!) {
-    product(handle: $handle) {
+      product(handle: $handle) {
       id
       handle
       title
+      productType
       description
       tags
       vendor

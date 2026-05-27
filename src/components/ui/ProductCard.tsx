@@ -4,7 +4,9 @@ import { useState, useCallback } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { Price } from "@/components/ui/Price";
+import { useCart } from "@/contexts/CartContext";
 import { useCurrency } from "@/contexts/CurrencyContext";
+import { detectCountry, getDeliveryEstimate } from "@/lib/delivery";
 import type { Product } from "@/lib/types";
 
 type ProductCardProps = {
@@ -31,25 +33,23 @@ function StarRating({ rating }: { rating: number }) {
   );
 }
 
-function DeliveryBadge({ category }: { category: string }) {
-  const labels: Record<string, string> = {
-    electronics: "Free Delivery • Ships 2-3 days",
-    toys: "Free Delivery • Ships 3-5 days",
-    gears: "Free Delivery • Ships 1-2 days",
-  };
+function DeliveryBadge({ category, locale }: { category: string; locale?: string }) {
+  const country = detectCountry(locale || "en-US");
+  const eta = getDeliveryEstimate(country);
 
   return (
     <span className="inline-flex items-center gap-1 text-[10px] font-medium text-green-600">
       <svg className="h-3 w-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
         <path d="M5 12h14" /><path d="M12 5l7 7-7 7" />
       </svg>
-      {labels[category] || "Free Delivery"}
+      Free Delivery • Ships {eta}
     </span>
   );
 }
 
 export function ProductCard({ product, variant = "default", priority = false }: ProductCardProps) {
-  const { convert } = useCurrency();
+  const { convert, locale } = useCurrency();
+  const { addItem } = useCart();
   const [wishlisted, setWishlisted] = useState(() => {
     try { return localStorage.getItem("wishlist")?.includes(product.id) ?? false; }
     catch { return false; }
@@ -119,12 +119,13 @@ export function ProductCard({ product, variant = "default", priority = false }: 
             <div className="quick-add-btn absolute bottom-3 left-3 right-3 z-10 flex gap-2">
               <button
                 type="button"
+                onClick={(e) => { e.preventDefault(); e.stopPropagation(); addItem(product); }}
                 className="flex-1 rounded-lg bg-foreground/90 py-2 text-center text-xs font-bold uppercase tracking-widest text-[var(--surface)] backdrop-blur-sm transition-transform hover:scale-[1.02]"
               >
                 Add to Cart
               </button>
-              <button
-                type="button"
+              <Link
+                href={`/products/${product.slug}`}
                 aria-label="Quick view"
                 className="flex h-9 w-9 items-center justify-center rounded-lg bg-foreground/90 text-[var(--surface)] backdrop-blur-sm transition-transform hover:scale-[1.02]"
               >
@@ -132,7 +133,7 @@ export function ProductCard({ product, variant = "default", priority = false }: 
                   <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
                   <circle cx="12" cy="12" r="3" />
                 </svg>
-              </button>
+              </Link>
             </div>
           )}
         </Link>
@@ -181,7 +182,7 @@ export function ProductCard({ product, variant = "default", priority = false }: 
 
           {/* Delivery badge + stock indicator */}
           <div className="mt-1 flex items-center justify-between">
-            <DeliveryBadge category={product.category} />
+            <DeliveryBadge category={product.category} locale={locale} />
             {lowStock && !outOfStock && (
               <span className="text-[10px] font-semibold text-orange-500">
                 Only {product.stock} left
