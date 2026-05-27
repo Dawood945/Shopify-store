@@ -11,7 +11,7 @@ type PriceProps = {
   compareCurrency?: CurrencyCode;
 };
 
-export function Price({ amount, currency = "USD", className, compareAmount, compareCurrency }: PriceProps) {
+export function Price({ amount, currency = "PKR", className, compareAmount, compareCurrency }: PriceProps) {
   const { formatPrice } = useCurrency();
 
   return (

@@ -35,10 +35,10 @@ export function CurrencyProvider({ children }: { children: React.ReactNode }) {
     } catch {}
   };
 
-  const convert = (amount: number, productCurrency: CurrencyCode = "USD") =>
+  const convert = (amount: number, productCurrency: CurrencyCode = "PKR") =>
     convertPrice(amount, productCurrency, currency);
 
-  const formatPrice = (amount: number, productCurrency: CurrencyCode = "USD") =>
+  const formatPrice = (amount: number, productCurrency: CurrencyCode = "PKR") =>
     formatCurrency(convertPrice(amount, productCurrency, currency), currency);
 
   return (
