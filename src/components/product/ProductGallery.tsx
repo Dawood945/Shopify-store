@@ -20,11 +20,11 @@ export function ProductGallery({ product }: { product: Product }) {
   }, [lightboxOpen, closeLightbox]);
 
   return (
-    <div className="space-y-3">
+    <div className="space-y-2 sm:space-y-3">
       <button
         type="button"
         onClick={openLightbox}
-        className="relative aspect-square w-full overflow-hidden rounded-[var(--radius)] border border-[var(--border)] bg-surface text-left sm:aspect-[4/5]"
+        className="relative aspect-[4/3] w-full overflow-hidden rounded-[var(--radius)] border border-[var(--border)] bg-surface text-left sm:aspect-[4/5]"
       >
         <Image
           src={product.images[active] ?? product.image}
@@ -42,13 +42,13 @@ export function ProductGallery({ product }: { product: Product }) {
       </button>
 
       {product.images.length > 1 && (
-        <div className="flex gap-2 overflow-x-auto pb-1">
+        <div className="flex gap-1.5 overflow-x-auto pb-1 sm:gap-2">
           {product.images.map((src, i) => (
             <button
               key={src}
               type="button"
               onClick={() => setActive(i)}
-              className={`relative h-20 w-16 shrink-0 overflow-hidden rounded-[var(--radius)] border bg-surface transition-colors ${
+              className={`relative h-14 w-12 shrink-0 overflow-hidden rounded-[var(--radius)] border bg-surface transition-colors sm:h-20 sm:w-16 ${
                 active === i ? "border-accent" : "border-border hover:border-accent/40"
               }`}
             >

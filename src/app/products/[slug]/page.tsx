@@ -28,17 +28,17 @@ export default async function ProductPage({ params }: Props) {
   if (!product) notFound();
 
   return (
-    <div className="mx-auto max-w-7xl px-4 pt-6 sm:px-6 sm:pb-12 sm:pt-10 lg:px-8 lg:pt-12">
-      <div className="grid gap-6 lg:grid-cols-2 lg:gap-16">
+    <div className="mx-auto max-w-7xl px-3 pt-4 sm:px-6 sm:pb-12 sm:pt-10 lg:px-8 lg:pt-12">
+      <div className="grid gap-4 lg:grid-cols-2 lg:gap-16">
         <ProductGallery product={product} />
         <PurchasePanel product={product} />
       </div>
-      <div className="mt-10 max-w-2xl lg:mt-16 lg:max-w-none">
+      <div className="mt-8 max-w-2xl lg:mt-16 lg:max-w-none">
         <BundleUpsell productSlug={product.slug} />
         <ProductSpecs product={product} />
         <ProductFAQ />
       </div>
-      <div className="mt-10 lg:mt-16">
+      <div className="mt-8 lg:mt-16">
         <TrustBadges />
       </div>
       <MobileStickyBar product={product} />
