@@ -28,7 +28,7 @@ export default async function ProductPage({ params }: Props) {
   if (!product) notFound();
 
   return (
-    <div className="mx-auto max-w-7xl px-4 pb-24 pt-6 sm:px-6 sm:pb-12 sm:pt-10 lg:px-8 lg:pt-12">
+    <div className="mx-auto max-w-7xl px-4 pt-6 sm:px-6 sm:pb-12 sm:pt-10 lg:px-8 lg:pt-12">
       <div className="grid gap-6 lg:grid-cols-2 lg:gap-16">
         <ProductGallery product={product} />
         <PurchasePanel product={product} />
