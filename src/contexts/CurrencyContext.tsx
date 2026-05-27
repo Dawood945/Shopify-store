@@ -16,7 +16,7 @@ const CurrencyContext = createContext<CurrencyContextValue | null>(null);
 const STORAGE_KEY = "gearnest_currency";
 
 export function CurrencyProvider({ children }: { children: React.ReactNode }) {
-  const [currency, setCurrencyState] = useState<CurrencyCode>("USD");
+  const [currency, setCurrencyState] = useState<CurrencyCode>("PKR");
 
   useEffect(() => {
     const stored = localStorage.getItem(STORAGE_KEY) as CurrencyCode | null;

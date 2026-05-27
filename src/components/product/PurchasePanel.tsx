@@ -2,35 +2,16 @@
 
 import { useState } from "react";
 import { Price } from "@/components/ui/Price";
+import { useCart } from "@/contexts/CartContext";
 import type { Product } from "@/lib/types";
 import { cn } from "@/lib/utils";
 
 export function PurchasePanel({ product }: { product: Product }) {
   const [size, setSize] = useState(product.sizes[0] ?? "One Size");
-  const [loading, setLoading] = useState(false);
+  const { addItem } = useCart();
 
   const outOfStock = product.stock !== undefined && product.stock <= 0;
   const lowStock = product.stock !== undefined && product.stock > 0 && product.stock <= 5;
-
-  async function goToCheckout() {
-    if (outOfStock) return;
-    setLoading(true);
-    try {
-      const res = await fetch("/api/shopify/checkout", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ slug: product.slug, size, quantity: 1 }),
-      });
-      const data = await res.json();
-      if (res.ok && data.checkoutUrl) {
-        window.location.href = data.checkoutUrl;
-        return;
-      }
-    } catch {
-      /* fall through to demo checkout */
-    }
-    window.location.href = "/checkout";
-  }
 
   return (
     <div className="card-elevated lg:sticky lg:top-24 lg:self-start p-5 lg:p-6">
@@ -82,17 +63,17 @@ export function PurchasePanel({ product }: { product: Product }) {
         </div>
       </div>
 
-      <div className="mt-6 hidden lg:flex flex-col gap-3 sm:flex-row">
+      <div className="mt-6 flex flex-col gap-3 sm:flex-row">
         <button
           type="button"
-          onClick={goToCheckout}
-          disabled={loading || outOfStock}
+          onClick={() => addItem(product, size)}
+          disabled={outOfStock}
           className="btn-primary flex-1 disabled:opacity-60"
         >
-          {outOfStock ? "Out of Stock" : loading ? "Redirecting…" : "Add to Cart"}
+          {outOfStock ? "Out of Stock" : "Add to Cart"}
         </button>
         <a href="/checkout" className="btn-pill flex-1 justify-center text-center">
-          Demo Checkout
+          Buy Now
         </a>
       </div>
 

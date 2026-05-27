@@ -11,9 +11,10 @@ const footerLinks = {
     { href: "/bundles", label: "Bundle Deals" },
   ],
   Support: [
-    { href: "#", label: "Shipping" },
-    { href: "#", label: "Returns" },
-    { href: "#", label: "Contact" },
+    { href: "/shipping", label: "Shipping" },
+    { href: "/returns", label: "Returns" },
+    { href: "/contact", label: "Contact" },
+    { href: "/privacy", label: "Privacy Policy" },
   ],
 };
 
@@ -81,9 +82,15 @@ export function Footer() {
           <p className="text-sm text-visible-muted">
             &copy; {new Date().getFullYear()} GearNest. All rights reserved.
           </p>
-          <p className="text-sm font-medium text-accent">
-            Bundle discounts up to 20% · Free returns 30 days
-          </p>
+          <div className="flex items-center gap-4 text-sm text-visible-muted">
+            <Link href="/privacy" className="transition-colors hover:text-accent">
+              Privacy Policy
+            </Link>
+            <span aria-hidden>·</span>
+            <p className="text-sm font-medium text-accent">
+              Bundle discounts up to 20% · Free returns 30 days
+            </p>
+          </div>
         </div>
       </div>
     </footer>

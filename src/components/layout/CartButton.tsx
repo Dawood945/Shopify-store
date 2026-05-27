@@ -2,10 +2,11 @@
 
 import { useRouter } from "next/navigation";
 import { IconButton } from "@/components/ui/IconButton";
+import { useCart } from "@/contexts/CartContext";
 
 export function CartButton() {
   const router = useRouter();
-  const itemCount = 1;
+  const { itemCount } = useCart();
 
   return (
     <IconButton

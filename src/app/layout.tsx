@@ -4,6 +4,7 @@ import { SiteLayout } from "@/components/layout/SiteLayout";
 import { ThemeProvider } from "@/components/theme/ThemeProvider";
 import { ThemeScript } from "@/components/theme/ThemeScript";
 import { CurrencyProvider } from "@/contexts/CurrencyContext";
+import { CartProvider } from "@/contexts/CartContext";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -43,7 +44,9 @@ export default function RootLayout({
       <body className="min-h-dvh bg-background text-foreground">
         <ThemeProvider>
           <CurrencyProvider>
-            <SiteLayout>{children}</SiteLayout>
+            <CartProvider>
+              <SiteLayout>{children}</SiteLayout>
+            </CartProvider>
           </CurrencyProvider>
         </ThemeProvider>
       </body>
