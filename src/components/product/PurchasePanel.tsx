@@ -64,7 +64,7 @@ export function PurchasePanel({ product }: { product: Product }) {
         </div>
       </div>
 
-      <div className="mt-6 flex flex-col gap-3 sm:flex-row">
+      <div className="mt-6 hidden flex-col gap-3 sm:flex sm:flex-row">
         <button
           type="button"
           onClick={() => addItem(product, size)}
